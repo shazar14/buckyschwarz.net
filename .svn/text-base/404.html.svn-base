@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- Hi! hope you like my sources. -->
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="main.css">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>buckyschwarz point net</title>
+</head>
+<body>
+  <h1>404!</h1>
+  <p>Oh dear! What you're looking for doesn't exist. No matter, <a href="http://buckyschwarz.net">click me</a> to go to Bucky Schwarz's webshard homesite.</p>
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-4483501-2");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>
+</body>
+<html>

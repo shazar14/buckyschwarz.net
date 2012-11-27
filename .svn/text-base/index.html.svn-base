@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Hi! hope you like my sources. -->
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="main.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Bucky Schwarz is a software developer living in Durham, NC.">
+  <title>buckyschwarz point net</title>
+</head>
+<body>
+  <h1>Bucky Schwarz</h1>
+  <p id="description"><span id="bucky-highlight">Bucky Schwarz</span> writes software. He <a href="http://bronto.com">works</a> and lives in Durham, North Carolina in the United States. He listens to <a href="http://www.last.fm/user/buckyhana">music</a>, <a href="https://twitter.com/#!/hoorayimhelping">tweets</a> and sometimes <a href="http://www.flickr.com/photos/importantyesterday/">photographs</a> things. He's on <a href="https://www.facebook.com/hoorayimhelping">facebook</a>, <a href="https://plus.google.com/103469744217618423938/about">Google+</a>, <a href="http://www.linkedin.com/profile/view?id=31656571&trk=tab_pro">Linkedin</a> and <a href="http://stackoverflow.com/users/92446/hooray-im-helping">Stack Overflow</a>.</p>
+  <p id="">Check out some of his <a class="local_link" href="particles/">ongoing canvas experiments</a></p>
+  <div id="headshot" style="display: none;">
+    <img id="headshot-image" src="boomheadshot.jpg" alt="Bucky Schwarz">
+  </div>
+<script type="text/javascript">
+  var showObnoxiousShit = function() {
+    $('#headshot').stop(true, true).fadeIn(250);
+  };
+
+  var hideObnoxiousShit = function() {
+    $('#headshot').stop(true, true).fadeOut(250);
+  };
+
+  $(document).ready(function() {
+    $('#bucky-highlight').hover(showObnoxiousShit, hideObnoxiousShit).live('click', function() {
+      // this used to be a regular if/else, way better now. I'm sure you agree if you're reading this
+      $('#headshot').is(':visible') ? hideObnoxiousShit() : showObnoxiousShit();
+    });
+  });
+</script>
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script> <script type="text/javascript">try {var pageTracker = _gat._getTracker("UA-4483501-2"); pageTracker._trackPageview();} catch(err) {}</script>
+</body>
+</html>

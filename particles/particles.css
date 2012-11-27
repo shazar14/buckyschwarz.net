@@ -1,0 +1,111 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body, html { background-image: url('background.png'); background-color: #DDD; text-shadow: #000 0 1px 0; width: 900px; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; font-weight: bold; }
+
+h1 { color: #DDD; font-size: 46px; margin: 40px; }
+h2 { color: #DDD; font-family: Helvetica, Arial, sans-serif; font-size: 24px; font-weight: normal;
+  letter-spacing: 3px; padding: 3px 0; text-align: center; text-shadow: 0 1px 0 #333; }
+a { color: #FF4F7B; text-decoration: none; }
+
+.experiment_title { color: #FFF; text-align: left; }
+div#canvases { margin-left: 40px; }
+ol#projects li { font-family: Helvetica; margin-bottom: 50px; position: relative; }
+ol#projects li .canvas_container { height: 250px; overflow: hidden;
+                                   position: relative; width: 750px; }
+ol#projects li canvas { position: relative; height: 250px; width: 750px; z-index: 3; }
+
+ol#projects li canvas.light { background-image: url('canvas_background_light.png'); background-color: #CCC;
+  -webkit-box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC;
+  -moz-box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC;
+  box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC; }
+
+ol#projects li canvas.dark { background-image: url('canvas_background_dark.png'); background-color: #333;
+  -webkit-box-shadow: inset 0 1px 0 #444, inset 0 -1px 0 #222;
+  -moz-box-shadow: inset 0 1px 0 #444, inset 0 -1px 0 #222;
+  box-shadow: inset 0 1px 0 #444, inset 0 -1px 0 #222; }
+
+ol#projects li .options { bottom: 253px; float: right; height: 250px; position: relative; opacity: 0.9; right: -1px;
+                          width: 170px; z-index: 4;
+                          box-shadow: -1px 0 10px -2px #666; }
+
+ol#projects li .options { background-image: url('options_background_dark.png'); background-color: #222; }
+ol#projects li .options ul li .slider_description { color: #DDD; text-shadow: 0 -1px 0 #666; }
+ol#projects li .options ul li .slider_legend { color: #DDD; text-shadow: 0 1px 0 #333; }
+
+ol#projects li .dark { box-shadow: -1px 0 10px -2px #333; }
+
+ol#projects li .options ul li .slider_description { font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; 
+  bottom: 95px; font-size: 11px; left: 23px; line-height: 10px; position: relative; }
+
+ol#projects li .options ul li .slider_legend { font-size: 17px; position: relative; text-align: center; width: 15px; }
+
+
+ol#projects li .options ul { margin-top: 5px; margin-left: 26px; }
+ol#projects li .options ul li { float: left; height: 135px; margin: 0; width: 70px }
+
+ol#projects li .options ul li .top {}
+ol#projects li .options ul li .bottom { bottom: 0; position: absolute; }
+
+ol#projects li .options ul li a.ui-state-active { -webkit-box-shadow: inset 0 1px 0 #999, inset 0 -1px 0 #FFF;
+                                                  -moz-box-shadow: inset 0 1px 0 #999, inset 0 -1px 0 #FFF;
+                                                  box-shadow: inset 0 1px 0 #AAA, inset 0 -1px 0 #EEE; }
+.ui-widget-content { background-image: url('canvas_background_light.png'); border: 0; overflow: hidden;
+                     -webkit-box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC;
+                     -moz-box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC;
+                     box-shadow: inset 0 1px 0 #666, inset 0 -1px 0 #CCC;}
+.ui-corner-all { border-radius: 0; }
+.ui-slider .ui-slider-handle { border: 0; width: 100%;
+                               -webkit-box-shadow: inset 0 -1px 0 #999, inset 0 1px 0 #FFF;
+                               -moz-box-shadow: inset 0 -1px 0 #999, inset 0 1px 0 #FFF;
+                               box-shadow: inset 0 -1px 0 #999, inset 0 1px 0 #FFF; }
+.ui-slider-vertical { width: .9em; }
+.ui-slider-vertical .ui-slider-handle { left: 0; }
+.ui-state-focus { outline: none; }

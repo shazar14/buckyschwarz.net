@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- Hi! hope you like my sources. -->
+<html lang="en">
+<head>
+  <script type="text/javascript" src="../js/jquery.js"></script>
+  <link rel="stylesheet" href="../ui/jquery-ui.css" type="text/css">
+  <link rel="stylesheet" href="particles.css">
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Bucky Schwarz is a software developer living in Durham, NC.">
+
+  <script type="text/javascript" src="Particle.js"></script>
+  <script type="text/javascript" src="ParticleManager.js"></script>
+  <script type="text/javascript" src="SnowfallParticleManager.js"></script>
+  <script type="text/javascript" src="Renderer.js"></script>
+
+  <title>buckyschwarz point net | Particles</title>
+</head>
+<body>
+	<h1>Particles</h1>
+	<div id="canvases">
+		<ol id="projects">
+			<li>
+			  <h2 class="experiment_title"><span class="decimal">1.</span> Explosion</h2>
+			  <div class="canvas_container">
+			    <canvas id="particle_explosion" class="light"></canvas>
+			    <div class="options light">
+			      <h2>Options</h2>
+				    <ul>
+				      <li>
+				        <div class="slider_legend top">+</div>
+				        <div id="explosion_particle_count_slider"></div>
+				        <p class="slider_description">P<br>a<br>r<br>t<br>i<br>c<br>l<br>e<br>s</p>
+				        <div class="slider_legend bottom">-</div>
+				      </li>
+				      <li>
+				        <div class="slider_legend top">+</div>
+				        <div id="explosion_gravity_slider"></div>
+				        <p class="slider_description">G<br>r<br>a<br>v<br>i<br>t<br>y</p>
+				        <div class="slider_legend bottom">-</div>
+				      </li>
+				    </ul>
+			    </div>
+			  </div>
+			</li>
+			<li>
+			  <h2 class="experiment_title"><span class="decimal">2.</span> Snowfall</h2>
+			  <div class="canvas_container">
+			    <canvas id="particle_snowfall" class="dark"></canvas>
+			    <div class="options dark">
+			      <h2>Options</h2>
+				    <ul>
+				      <li>
+				        <div class="slider_legend top">+</div>
+				        <div id="snowfall_particle_count_slider"></div>
+				        <p class="slider_description">P<br>a<br>r<br>t<br>i<br>c<br>l<br>e<br>s</p>
+				        <div class="slider_legend bottom">-</div>
+				      </li>
+				    </ul>
+			    </div>
+			  </div>
+			</li>
+		</ol>
+	</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+	  $('#projects li canvas').attr({
+  		height: '250',
+  		width: '750'
+  	});
+
+  	var $options = $('#projects li .options'),
+  	    optionsWidth = $options.width();
+
+  	$options.hover(function() {
+      $(this).stop().animate({ right: -1 }, 250);
+  	}, function() {
+  	  $(this).stop().animate({ right: -optionsWidth + 25 }, 250);
+  	});
+
+    setTimeout(function() {
+      $options.animate({ right: -optionsWidth + 25 }, 250);
+    }, 900);
+
+    // box one, particle explosion
+  	(function() {
+  	  var $container = $('#particle_explosion'),
+  	      $sidebar = $container.siblings('.options'),
+          context = $container.get(0).getContext('2d'),
+          optionsState = {},
+          interval = '',
+          gravityDamper = .105,
+          renderer = new Renderer(context),
+          particleManager = new ParticleManager(700),
+          mainLoop = function(m, r) {
+            m.update();
+            r.clear();
+            m.drawParticles(r.drawParticle);
+          };
+
+      $('#explosion_particle_count_slider').slider({
+        animate: true,
+        max: 1000,
+        min: 100,
+        orientation: 'vertical',
+        step: 10,
+        value: 500,
+        change: function(event, ui) {
+          optionsState.particles = ui.value;
+        }
+      });
+      $('#explosion_gravity_slider').slider({
+        animate: true,
+        max: 10,
+        min: 1,
+        orientation: 'vertical',
+        step: 1,
+        value: 3,
+        change: function(event, ui) {
+          optionsState.gravity = ui.value * gravityDamper;
+        }
+      });
+
+    	context.width = $container.css('width');
+      context.height = $container.css('height');
+      particleManager.bounds = { x: context.canvas.width, y: context.canvas.height };
+
+      optionsState.particles = $('#explosion_particle_count_slider').slider('value');
+      optionsState.gravity = $('#explosion_gravity_slider').slider('value') * gravityDamper;
+
+      $container.bind('click', function(event) {
+        var point = { x: event.pageX - $container.offset().left, 
+                     y: event.pageY - $container.offset().top };
+
+        particleManager.particleCount = optionsState.particles;
+        particleManager.gravity = optionsState.gravity;
+        particleManager.initialize(point);
+
+        if (interval !== '') {
+          clearInterval(interval);
+        }
+
+        interval = setInterval(function() {
+          mainLoop(particleManager, renderer);
+        },20);
+      });
+    })();
+
+
+    (function() {
+      var $container = $('#particle_snowfall'),
+  	      $sidebar = $container.siblings('.options'),
+          context = $container.get(0).getContext('2d'),
+          optionsState = {},
+          interval = '',
+          gravityDamper = .105,
+          renderer = new Renderer(context),
+          particleManager = new SnowfallParticleManager(700),
+          mainLoop = function(m, r) {
+            m.update();
+            r.clear();
+            m.drawParticles(r.drawParticle);
+          };
+
+      $('#snowfall_particle_count_slider').slider({
+        animate: true,
+        max: 1000,
+        min: 100,
+        orientation: 'vertical',
+        step: 100,
+        value: 750,
+        change: function(event, ui) {
+          optionsState.particles = ui.value;
+          particleManager.resize(optionsState.particles);
+        }
+      });
+
+      context.width = $container.css('width');
+      context.height = $container.css('height');
+      particleManager.bounds = { x: context.canvas.width, y: context.canvas.height };
+
+      optionsState.particles = $('#snowfall_particle_count_slider').slider('value');
+      optionsState.wind = $('#snowfall_wind_slider').slider('value');
+
+      particleManager.particleCount = 750;
+      particleManager.initialize();
+       
+      if (interval !== '') {
+        clearInterval(interval);
+      }
+       
+      interval = setInterval(function() {
+        mainLoop(particleManager, renderer);
+      },20);
+
+    })();
+  });
+</script>
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script> <script type="text/javascript">try {var pageTracker = _gat._getTracker("UA-4483501-2"); pageTracker._trackPageview();} catch(err) {}</script>
+</body>
+</html>
